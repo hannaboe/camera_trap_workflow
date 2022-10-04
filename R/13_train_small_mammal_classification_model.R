@@ -24,9 +24,9 @@
 ## It can be used to retrain the model with your images by adding your images to the training dataset and then retraining the model.
 ## The script can also be used as an example for training a classification model from scratch in R.
 
-## Our training data set is available on dataverse.no
+## Our training data set is available on https://doi.org/10.5281/zenodo.7142734
 
-## All images that should be used for training, validation and testing should have been selected and copied to a folder for the category as described in '11_select_training_images.R' 
+## All images that should be used for training, validation and testing should have been selected and stored in a folder called 'training_images' with subfolders for each category as described in '11_select_training_images.R' 
 ## The script requires files that contain names and class of all training and validation images. See script '12_create_training_files.R' for instructions how these files should be formatted.
 ## To train a machine learning model, keras and tensorflow have to be installed and tested as described in 'processing_camera_trap_images_step_by_step'.
 

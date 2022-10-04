@@ -22,7 +22,7 @@
 ## This script can be used to to train a new classification model with our small mammal classification model as a base model using transfer learning.
 ## It can also be adapted to be used with other base models.
 
-## All images that should be used for training, validation and testing should have been selected and copied to a folder for the category as described in '11_select_training_images.R' 
+## All images that should be used for training, validation and testing should have been selected and stored in a folder called 'training_images' with subfolders for each category as described in '11_select_training_images.R' 
 ## The script requires files that contain names and class of all training and validation images. See script '12_create_training_files.R' for instructions how these files should be formatted.
 ## To train a classification model, keras and tensoflow have to be installed and tested as described in xx.
 ## Before running this script, you have to run '31_transfer_learning_step_1.R'.

@@ -48,6 +48,7 @@
 ## load libraries
 library("keras")
 library("tensorflow")
+library("zen4R")  # for downloading the model from zenodo
 
 ## set up keras and tensorflow
 keras::use_condaenv("keras_r") ## tell R which anaconda environment it should use
@@ -69,6 +70,12 @@ year <- "2020" # write here which year of images (folder name) you want to proce
 
 ## get all sites ids
 sites <- dir(paste(image.dir, locality, sep = "/"))
+
+## download the model from zenodo (if it hasn't been downloaded before), it will be saved in the model folder
+if (!file.exists(paste(model.dir, model.name, sep = "/"))) {
+  options(timeout=2000)  # set the timeout when downloading will be stopped to a high number (downloading the model takes a while)
+  download_zenodo(doi = "10.5281/zenodo.7142734", path = model.dir, files = list(model.name))  # download the model
+}
 
 ## load the model
 model <- load_model_hdf5(paste(model.dir, model.name, sep = "/"))

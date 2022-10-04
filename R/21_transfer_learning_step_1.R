@@ -23,7 +23,7 @@
 ## This script can be used to to train a new classification model with our small mammal classification model as a base model using transfer learning.
 ## It can also be adapted to be used with other base models.
 
-## All images that should be used for training, validation and testing should have been selected and copied to a folder for the category as described in '11_select_training_images.R' 
+## All images that should be used for training, validation and testing should have been selected and stored in a folder called 'training_images' with subfolders for each category as described in '11_select_training_images.R' 
 ## The script requires files that contain names and class of all training and validation images. See script '12_create_training_files.R' for instructions how these files should be formatted.
 ## To train a classification model, keras and tensoflow have to be installed and tested as described in 'processing_camera_trap_images_step_by_step'.
 
@@ -48,6 +48,7 @@
 ## load libraries
 library("keras")
 library("tensorflow")
+library("zen4R")  # for downloading the model from zenodo
 
 ## set up keras and tensorflow
 keras::use_condaenv("keras_r") ## tell R which anaconda environment it should use
@@ -76,6 +77,12 @@ history_name <- paste(paste("transfer_learning_1", sub(".h5", "", base_model_nam
 
 ## load functions for cyclic learning rate
 source("rscripts/functions_cyclic_learning_rate.R")
+
+## download the model from zenodo (if it hasn't been downloaded before), it will be saved in the model folder
+if (!file.exists(paste(model.dir, model.name, sep = "/"))) {
+  options(timeout=2000)  # set the timeout when downloading will be stopped to a high number (downloading the model takes a while)
+  download_zenodo(doi = "10.5281/zenodo.7142734", path = model.dir, files = list(model.name))  # download the model
+}
 
 
 
