@@ -8,4 +8,4 @@ Clone the repository or download it as a zip-file to run the workflow. Step by s
 The images used for training the small mammal classification-model are available on https://doi.org/10.5281/zenodo.7142734 .
 
 Citation:
-Böhner H., Kleiven E. F., Ims R. A., Soininen E. M. (2022) A semi-automatic workflow to process camera trap images in R, BioRxiv
+Böhner H., Kleiven E. F., Ims R. A., Soininen E. M. (2022) A semi-automatic workflow to process camera trap images in R, bioRxiv, https://doi.org/10.1101/2022.10.05.510927 
