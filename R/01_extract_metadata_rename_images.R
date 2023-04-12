@@ -124,11 +124,19 @@ for (i in 1:length(new_sites)){
     if ((as.numeric(year)-1) %in% dir(paste(out.dir, locality, new_sites[i], sep="/"))){
         old_filenames <- list.files(paste(out.dir, locality, new_sites[i], as.numeric(year)-1, sep = "/"), pattern = "JPG")  # old image names
         if(length(old_filenames[old_filenames %in% new_filenames]) != 0){
-          last_number <- tail(old_filenames[old_filenames %in% new_filenames], n = 1) %>% 
+          last_day <- tail(old_filenames[old_filenames %in% new_filenames], n = 1) %>% 
+            str_split("_") %>%
+            map(3) %>% 
+            unlist(.)
+          
+          last_dup <- str_extract(old_filenames, last_day) 
+          last_dup <- tail(which(!is.na(last_dup)), n = 1)
+          
+          last_number <- old_filenames[last_dup] %>% 
             strsplit("_") %>% 
             map(length(.[[1]])) %>% 
             sub(".JPG", "", .)
-          correct_site <- sub(paste0("_", last_number), "", sub(".JPG", "", tail(old_filenames[old_filenames %in% new_filenames], n = 1)))
+          correct_site <- sub(paste0("_", last_number), "", sub(".JPG", "", old_filenames[last_dup]))
           
           new_numbers<-as.character(seq(from=as.numeric(last_number)+1, length.out = length(new_filenames[grep(correct_site, new_filenames)])))
           new_numbers[nchar(new_numbers)==1]<-paste("000", new_numbers[nchar(new_numbers)==1], sep="")
