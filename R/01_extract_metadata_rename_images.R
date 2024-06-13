@@ -61,7 +61,7 @@ new_sites<-new_sites[!is.na(new_sites)]  # only sites with new pictures
 ## check which metadata tags are available
 colnames(read_exif(dir(paste(in.dir, locality, new_sites[1], year, sep = "/"), full.names = TRUE)[1]))
 
-## write here the metadata tags that should be extracted
+## write here the metadata tags that should be extracted (when using the example data set from github, only SourceFile and FileName are available from these)
 tags <- c("FileName", "Make", "Model", "DateTimeOriginal", "TriggerMode", "TriggerMode", "Sequence", "EventNumber", "MoonPhase", 
           "AmbientTemperature", "SerialNumber", "Contrast", "Brightness", "Sharpness", "Saturation")
 
